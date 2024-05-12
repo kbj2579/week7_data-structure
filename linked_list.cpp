@@ -11,17 +11,15 @@ using namespace std;
     while(cur != NULL){
         Node *next_ = cur->next_;
         delete cur;
-        cur = next_
+        cur = next_;
     }
   }
   void LinkedList::print(){
-    Node* cur = head_;
-    while(cur != NULL){
-        cout << cur->value_ << "-->";
-        cur = cur->next_;
+    for(int i = 0; i < size_; i++){
+        cout << get(i) << " ";
     }
     cout << endl;
-    return;
+    
   }
 
   void LinkedList::insert(int index, int value){
@@ -63,22 +61,22 @@ using namespace std;
   }
   void LinkedList::remove(int index){
     Node* cur = head_; // 삭제할 노드
-    Node* pre = head_; // 삭제할 노드의 이전노드
-    
-    // index 위치까지 cur,pre 노드 이동
-    for(int i = 0; i < index; i++){
-        if(cur != head_){
-            pre = pre->next_;
-        }
+    Node* pre = nullptr; // 삭제할 노드의 이전노드
+
+    // index 위치까지 cur, pre 노드 이동
+    for (int i = 0; i < index; i++) {
+        pre = cur;
         cur = cur->next_;
     }
-    
-    if(cur == head_){
-        delete cur;
-    }
-    else{ // index가 1이상인 경우
+
+    if (pre == nullptr) {
+        // head를 삭제하는 경우
+        head_ = cur->next_;
+    } else {
+        // index가 1이상인 경우
         pre->next_ = cur->next_;
-        delete cur;
     }
+
+    delete cur;
     size_--;
   }

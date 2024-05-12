@@ -5,12 +5,14 @@
 using namespace std;
 // TODO: List 클래스 정의 작성
 
-class list{
-    
-    private: 
+class List : public LinkedList {
+    public:
+        List();
         void insert(int index, int value);
         int get(int index);
         void remove(int index);
-}
+
+        
+};
 
 #endif
